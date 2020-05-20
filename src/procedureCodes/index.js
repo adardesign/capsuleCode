@@ -1,5 +1,4 @@
-import React, { useReducer, useContext, createContext } from "react";
-import "./styles.css";
+import React, { useReducer, useContext, createContext, memo } from "react";
 
 const StateContext = createContext();
 const DispatchContext = createContext();
@@ -13,7 +12,7 @@ const Wrappper = () => {
   );
 };
 
-const ComponentA = () => {
+const ComponentA = memo(() => {
   const dispatch = useContext(DispatchContext);
 
   return (
@@ -33,9 +32,9 @@ const ComponentA = () => {
       <ComponentA2 />
     </div>
   );
-};
+});
 
-const ComponentB = () => {
+const ComponentB = memo(() => {
   const dispatch = useContext(DispatchContext);
 
   return (
@@ -55,13 +54,13 @@ const ComponentB = () => {
       <ComponentB2 />
     </div>
   );
-};
+});
 
-const ComponentA1 = () => {
+const ComponentA1 = memo(() => {
   const _stateContext = useContext(StateContext);
 
   return <div>ComponentA1 {_stateContext.a}</div>;
-};
+});
 
 const ComponentA2 = () => {
   const dispatch = useContext(DispatchContext);
@@ -126,7 +125,7 @@ export default function App() {
 
   return (
     <div className="App">
-      <h1>Big question</h1>
+      <h1>Codes</h1>
       <DispatchContext.Provider value={dispatch}>
         <StateContext.Provider value={state}>
           <Wrappper />

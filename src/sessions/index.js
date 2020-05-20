@@ -1,5 +1,4 @@
 import React, { useReducer, useContext, createContext } from "react";
-import "./styles.css";
 
 const StateContext = createContext();
 const DispatchContext = createContext();
@@ -126,7 +125,7 @@ export default function App() {
 
   return (
     <div className="App">
-      <h1>Big question</h1>
+      <h1>Sessions</h1>
       <DispatchContext.Provider value={dispatch}>
         <StateContext.Provider value={state}>
           <Wrappper />
