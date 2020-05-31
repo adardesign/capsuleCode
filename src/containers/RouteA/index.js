@@ -1,112 +1,21 @@
-import React, { useReducer, useContext, createContext, memo } from "react";
-
-const StateContext = createContext();
-const DispatchContext = createContext();
+import React, { useReducer } from "react";
+import Layout from '../../components/template/layout'
+import {DispatchContext,  StateContext} from './contexts'
+import {ComponentA,  ComponentB} from './Tempbox'
 
 const Wrappper = () => {
   return (
-    <div className="row">
-      <ComponentA />
-      <ComponentB />
-    </div>
+    <Layout header={{ name: "Montana" }} classNames={{ header: 'routeA', body: 'montana' }}>
+      <div className="row">
+        Montana is a western state defined by its diverse terrain ranging from the Rocky Mountains to the Great Plains. Its wide-open spaces include Glacier National Park, a vast wilderness preserve that passes into Canada. The park’s many snow-capped peaks, lakes and alpine hiking trails are showcased along its famed Going-to-the-Sun Road, stretching 50 miles.
+        <ComponentA />
+        <ComponentB />
+      </div>
+    </Layout>
   );
 };
 
-const ComponentA = memo(() => {
-  const dispatch = useContext(DispatchContext);
 
-  return (
-    <div className="column">
-      ComponentA
-      <button
-        onClick={() => {
-          dispatch({
-            type: "increment",
-            id: "b"
-          });
-        }}
-      >
-        incriment B
-      </button>
-      <ComponentA1 />
-      <ComponentA2 />
-    </div>
-  );
-});
-
-const ComponentB = memo(() => {
-  const dispatch = useContext(DispatchContext);
-
-  return (
-    <div className="column">
-      ComponentB
-      <button
-        onClick={() => {
-          dispatch({
-            type: "increment",
-            id: "a"
-          });
-        }}
-      >
-        update A
-      </button>
-      <ComponentB1 />
-      <ComponentB2 />
-    </div>
-  );
-});
-
-const ComponentA1 = memo(() => {
-  const _stateContext = useContext(StateContext);
-
-  return <div>ComponentA1 {_stateContext.a}</div>;
-});
-
-const ComponentA2 = () => {
-  const dispatch = useContext(DispatchContext);
-
-  return (
-    <div>
-      ComponentA2
-      <button
-        onClick={() => {
-          dispatch({
-            type: "decrement",
-            id: "b"
-          });
-        }}
-      >
-        decrement B
-      </button>
-    </div>
-  );
-};
-
-const ComponentB1 = () => {
-  const _stateContext = useContext(StateContext);
-
-  return <div>ComponentB1 {_stateContext.b}</div>;
-};
-
-const ComponentB2 = () => {
-  const dispatch = useContext(DispatchContext);
-
-  return (
-    <div>
-      ComponentB2
-      <button
-        onClick={() => {
-          dispatch({
-            type: "decrement",
-            id: "a"
-          });
-        }}
-      >
-        decrement A
-      </button>
-    </div>
-  );
-};
 /////////////////////////////////////////////////////////
 
 function reducer(state, action) {
@@ -116,7 +25,7 @@ function reducer(state, action) {
     case "decrement":
       return { ...state, [action.id]: state[action.id] - 1 };
     default:
-      throw new Error();
+      return state
   }
 }
 
@@ -125,7 +34,6 @@ export default function App() {
 
   return (
     <div className="App">
-      <h1>Codes</h1>
       <DispatchContext.Provider value={dispatch}>
         <StateContext.Provider value={state}>
           <Wrappper />

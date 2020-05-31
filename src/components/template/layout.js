@@ -1,11 +1,12 @@
 import React from 'react'
 
-export default function Layout({ header, childern, classNames }) {
+export default function Layout({ header, classNames, ...props }) {
+    console.log(header, classNames, props)
     return (
         <div className={classNames.header}>
             <h2>{header.name}</h2>
             <div className={`body ${classNames.body}`}>
-                {childern}
+                {props.children}
             </div>
         </div>
     )

@@ -1,7 +1,19 @@
 import React from "react";
 import { connect } from 'react-redux'
 import axios from 'axios'
-import Vermont from './Vermont'
+import Layout from '../../components/template/layout';
+
+
+
+const RouteB = () => {
+  return (
+    <Layout header={{ name: "Vermont" }} classNames={{ header: 'routeB', body: 'Vermont' }}>
+      Vermont is a state in the northeastern United States, known for its natural landscape, which is primarily forested. Part of the New England region, it's also known for being home to more than 100 19th-century covered wooden bridges, and as a major producer of maple syrup. Thousands of acres of mountain terrain are crossed by hiking trails and skiing slopes.
+    </Layout>
+  )
+}
+
+
 
 // actions
 function loadSessionData(params) {
@@ -31,7 +43,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 })
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Vermont)
+export default connect(mapStateToProps, mapDispatchToProps)(RouteB)
 
 
 
