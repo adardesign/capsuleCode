@@ -2,8 +2,8 @@ import React from 'react'
 import { Router, Link } from "@reach/router";
 import { connect } from 'react-redux'
 
-import Sessions from './sessions'
-import ProcedureCodes from './procedureCodes';
+import Sessions from './containers/sessions/'
+import ProcedureCodes from './containers/procedureCodes/';
 
 
 const NavLink = props => (
@@ -27,8 +27,8 @@ const Layout = ({ isLoggedIn, doLogin }) => {
             {!isLoggedIn && (<button onClick={doLogin}>Login</button>)}
             {isLoggedIn && (
                 <>
-                <NavLink to="/">Home</NavLink>
-                <NavLink to="/sessions">sessions</NavLink>
+                <NavLink to="/">Home</NavLink><br/>
+                <NavLink to="/sessions">sessions</NavLink><br/>
                 <NavLink to="/code">code</NavLink>
                 
                  <Router>
