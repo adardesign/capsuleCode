@@ -1,15 +1,14 @@
 import React from "react";
 import { connect } from 'react-redux'
 import axios from 'axios'
-import Sessions from './session';
-
+import Vermont from './Vermont'
 
 // actions
 function loadSessionData(params) {
   console.log(params)
   return (dispatch, getState) => {
-    const sessionsState = getState().sessions;
-    console.log(sessionsState);
+    const RouteBState = getState().RouteB;
+    console.log(RouteBState);
     axios.get("api/sessions/index.json").then( response =>{
       dispatch({
         type: "SESSION_GET_DATA_SUCCESS", 
@@ -22,9 +21,9 @@ function loadSessionData(params) {
 
 const mapStateToProps = (state) => ({
   isLoggedIn: state.login.isLoggedIn,
-  data: state.sessions.data,
-  filters: state.sessions.filters,
-  search: state.sessions.search,
+  data: state.RouteB.data,
+  filters: state.RouteB.filters,
+  search: state.RouteB.search,
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
@@ -32,7 +31,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 })
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Sessions)
+export default connect(mapStateToProps, mapDispatchToProps)(Vermont)
 
 
 

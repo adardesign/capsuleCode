@@ -12,7 +12,7 @@ const login = (state = { isLoggedIn: false, roles: [], currentRole: '' }, action
   
   
   
-  const sessions = (state = {
+  const RouteA = (state = {
       isLoading: true,
       data: null,
       filters: [],
@@ -24,15 +24,15 @@ const login = (state = { isLoggedIn: false, roles: [], currentRole: '' }, action
     return state;
   }
   
-  const procedureCodes = (state = { isLoading: false, data: null, }, action) => {
+  const RouteB = (state = { isLoading: false, data: null, }, action) => {
     return state;
   }
   
   const rootReducer = combineReducers({
     login,
     appState,
-    sessions,
-    procedureCodes
+    RouteA,
+    RouteB
   })
   
   export default rootReducer;

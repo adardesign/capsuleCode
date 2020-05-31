@@ -1,7 +1,7 @@
 import React from "react";
 import { Provider } from 'react-redux'
 import store from './store'
-import Layout from './layout';
+import Routes from './routes';
 import "./styles.css";
 
 
@@ -13,7 +13,7 @@ export default function App() {
     <div className="App">
       <h1>APP</h1>
       <Provider store={storeValue}>
-        <Layout />
+        <Routes />
       </Provider>
     </div>
   );
