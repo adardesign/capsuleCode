@@ -7,6 +7,6 @@
 - [x] views / layout
 - [ ] wired reusable actions 
 - [ ] persistency in app  (session storage) 
-- [ ] mock API
+- [x] mock API
 - [ ] modes / roles
 - [ ] storybook
