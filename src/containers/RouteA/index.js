@@ -1,7 +1,7 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useEffect } from "react";
 import Layout from '../../components/template/layout'
-import {DispatchContext,  StateContext} from './contexts'
-import {ComponentA,  ComponentB} from './Tempbox'
+import { DispatchContext, StateContext } from './contexts'
+import { ComponentA, ComponentB } from './Tempbox'
 
 const Wrappper = () => {
   return (
@@ -30,15 +30,20 @@ function reducer(state, action) {
 }
 
 export default function App() {
-  const [state, dispatch] = useReducer(reducer, { a: 0, b: 0 });
+  let storedState = sessionStorage.getItem("RouterAState");
+  storedState = storedState ? JSON.parse(storedState) : { a: 0, b: 0 }
+
+  const [state, dispatch] = useReducer(reducer, storedState);
+  
+  useEffect(() => {
+    sessionStorage.setItem("RouterAState", JSON.stringify(state))
+  }, [state]);
 
   return (
-    <div className="App">
-      <DispatchContext.Provider value={dispatch}>
-        <StateContext.Provider value={state}>
-          <Wrappper />
-        </StateContext.Provider>
-      </DispatchContext.Provider>
-    </div>
+    <DispatchContext.Provider value={dispatch}>
+      <StateContext.Provider value={state}>
+        <Wrappper />
+      </StateContext.Provider>
+    </DispatchContext.Provider>
   );
 }
