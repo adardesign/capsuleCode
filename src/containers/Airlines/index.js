@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { connect } from 'react-redux'
 import Layout from '../../components/template/layout';
 import DataGrid from 'react-data-grid';
 import 'react-data-grid/dist/react-data-grid.css';
@@ -26,16 +25,10 @@ const Airlines = () => {
     console.log(e)
   }
 
-  const sortRows = (initialRows, sortColumn, sortDirection) => rows => {
-    const comparer = (a, b) => {
-      if (sortDirection === "ASC") {
-        return a[sortColumn] > b[sortColumn] ? 1 : -1;
-      } else if (sortDirection === "DESC") {
-        return a[sortColumn] < b[sortColumn] ? 1 : -1;
-      }
-    };
-    return sortDirection === "NONE" ? initialRows : [...rows].sort(comparer);
-  };
+  const onRowsSelected = (event) =>{
+    debugger;
+  }
+
 
   const columns = data && data.length && Object.keys(data[0]).map(e => ({
     key: e,
@@ -70,6 +63,10 @@ const Airlines = () => {
         marginPagesDisplayed={2}
         pageRangeDisplayed={5}
         onPageChange={onPageChange}
+        onRowsDeselected={onRowsSelected}
+        onRowsSelected={onRowsSelected}
+        selectBy="row"
+        showCheckbox="true"
         containerClassName={'pagination'}
         subContainerClassName={'pages pagination'}
         activeClassName={'active'}
@@ -80,13 +77,10 @@ const Airlines = () => {
 }
 
 
-const mapStateToProps = (state) => ({
-  role: '',
-});
 
 
 
-export default connect(mapStateToProps)(Airlines)
+export default Airlines
 
 
 

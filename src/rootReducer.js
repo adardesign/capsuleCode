@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux'
+import airports from './containers/Airports/reducer'
 
 const login = (state = { isLoggedIn: false, roles: [], currentRole: '' }, action) => {
   if (action.type === 'loginSuccess') {
@@ -25,9 +26,7 @@ const RouteB = (state = { isLoading: false, data: null, }, action) => {
   return state;
 }
 
-const airports = (state = { isLoading: true, data: null }, action) => {
-  return state;
-}
+
 
 const rootReducer = combineReducers({
   login,
