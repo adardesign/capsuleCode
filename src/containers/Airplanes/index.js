@@ -5,14 +5,14 @@ import DataGrid from "react-data-grid";
 import { read } from "../../actions/crud";
 import "react-data-grid/dist/react-data-grid.css";
 
-const Airplanes = ({ loadAirports, page, data, error, isLoading, load }) => {
+const Airplanes = ({ loadAirplanesByPage, page, data, error, isLoading, load }) => {
   
   // first time
   useEffect(() => {
-    loadAirports(0)
+    loadAirplanesByPage(page)
   }, [])
 
-  const loadAirplanesByPage = function ({target}) {
+  const loadAirplanes = function ({target}) {
     const dir = target.dataset.dir;
     let newPage;
     if(dir === "previous") {
@@ -20,8 +20,9 @@ const Airplanes = ({ loadAirports, page, data, error, isLoading, load }) => {
     }else{
       newPage = ++page 
     }
-    loadAirports(newPage);
+    loadAirplanesByPage(newPage);
   };
+
   const columns =
     data &&
     data.length &&
@@ -45,17 +46,17 @@ const Airplanes = ({ loadAirports, page, data, error, isLoading, load }) => {
       header={{ name: "Airplanes" }}
       classNames={{ header: "routeB", body: "Vermont" }}
     >
-      { page > 0 &&  <button onClick={loadAirplanesByPage} data-dir="previous">
-        load previous Airplanes page: {page - 1}
-      </button>
-      }
-      <button onClick={loadAirplanesByPage} data-dir="next">
-        Load next page: {page + 1}
-      </button>
-      A list of airports.
+      <h1>A list of airplanes.</h1>
       {isLoading && <div className="loading">Loading...</div>}
       {error && <div className="loading">Error: {error.message}</div>}
       {!error && data && <DataGrid columns={columns} rows={rows} />}
+      { page > 0 &&  <button onClick={loadAirplanes} data-dir="previous">
+        load previous Airplanes page: {page - 1}
+      </button>
+      }
+      <button onClick={loadAirplanes} data-dir="next">
+        Load next page: {page + 1}
+      </button>
     </Layout>
   );
 };

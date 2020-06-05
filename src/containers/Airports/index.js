@@ -1,14 +1,34 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import Layout from "../../components/template/layout";
 import DataGrid from "react-data-grid";
-import { loadAirports } from "./actions";
+import { read } from "../../actions/crud";
 import "react-data-grid/dist/react-data-grid.css";
 
-const Airports = ({ loadAirports, page, data, error, isLoading, load }) => {
-  const loadAirportsByPage = function () {
-    loadAirports(page);
+const Airports = ({
+  loadAirportsByPage,
+  page,
+  data,
+  error,
+  isLoading,
+  load,
+}) => {
+  // first time
+  useEffect(() => {
+    loadAirportsByPage(page);
+  }, []);
+
+  const loadAirports = function ({ target }) {
+    const dir = target.dataset.dir;
+    let newPage;
+    if (dir === "previous") {
+      newPage = --page;
+    } else {
+      newPage = ++page;
+    }
+    loadAirportsByPage(newPage);
   };
+
   const columns =
     data &&
     data.length &&
@@ -32,11 +52,20 @@ const Airports = ({ loadAirports, page, data, error, isLoading, load }) => {
       header={{ name: "Airports" }}
       classNames={{ header: "routeB", body: "Vermont" }}
     >
-      <button onClick={loadAirportsByPage}>Load Airports page: {page+1}</button>A list of
-      airports.
+      <h1>A list of airports.</h1>
       {isLoading && <div className="loading">Loading...</div>}
       {error && <div className="loading">Error: {error.message}</div>}
       {!error && data && <DataGrid columns={columns} rows={rows} />}
+     
+      {page > 0 && (
+        <button onClick={loadAirports} data-dir="previous">
+          load previous Airplanes page: {page - 1}
+        </button>
+      )}
+      <button onClick={loadAirports} data-dir="next">
+        Load next page: {page + 1}
+      </button>
+
     </Layout>
   );
 };
@@ -50,7 +79,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    loadAirports: (page) => dispatch(loadAirports(page)),
+    loadAirportsByPage: (page) =>
+      dispatch(read("AIRPORTS", "airplanes", { page })),
   };
 };
 

@@ -5,7 +5,7 @@
 - [x] layout
 - [x] split code / suspense
 - [x] views / layout
-- [ ] wired reusable actions 
+- [x] wired reusable actions 
 - [x] persistency in app  (session storage) 
 - [x] localized loading states 
 - [x] mock API
