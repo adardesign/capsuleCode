@@ -1,13 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import Layout from "../../components/template/layout";
 import DataGrid from "react-data-grid";
-import { loadAirplanes } from "./actions";
+import { read } from "../../actions/crud";
 import "react-data-grid/dist/react-data-grid.css";
 
 const Airplanes = ({ loadAirports, page, data, error, isLoading, load }) => {
-  const loadAirportsByPage = function () {
-    loadAirports(page);
+  
+  // first time
+  useEffect(() => {
+    loadAirports(0)
+  }, [])
+
+  const loadAirplanesByPage = function ({target}) {
+    const dir = target.dataset.dir;
+    let newPage;
+    if(dir === "previous") {
+      newPage = --page 
+    }else{
+      newPage = ++page 
+    }
+    loadAirports(newPage);
   };
   const columns =
     data &&
@@ -32,8 +45,14 @@ const Airplanes = ({ loadAirports, page, data, error, isLoading, load }) => {
       header={{ name: "Airplanes" }}
       classNames={{ header: "routeB", body: "Vermont" }}
     >
-      <button onClick={loadAirportsByPage}>Load Airplanes page: {page+1}</button>A list of
-      airports.
+      { page > 0 &&  <button onClick={loadAirplanesByPage} data-dir="previous">
+        load previous Airplanes page: {page - 1}
+      </button>
+      }
+      <button onClick={loadAirplanesByPage} data-dir="next">
+        Load next page: {page + 1}
+      </button>
+      A list of airports.
       {isLoading && <div className="loading">Loading...</div>}
       {error && <div className="loading">Error: {error.message}</div>}
       {!error && data && <DataGrid columns={columns} rows={rows} />}
@@ -50,7 +69,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    loadAirports: (page) => dispatch(loadAirplanes(page)),
+    loadAirplanesByPage: (page) => dispatch(read("AIRPLANES", "airplanes", { page })),
   };
 };
 
