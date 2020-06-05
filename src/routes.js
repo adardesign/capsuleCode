@@ -7,6 +7,7 @@ const RouteA = lazy(() => import('./containers/RouteA'));
 const RouteB = lazy(() => import('./containers/RouteB'));
 const Airlines = lazy(() => import('./containers/Airlines'));
 const Airports = lazy(() => import('./containers/Airports'));
+const Airplanes = lazy(() => import('./containers/Airplanes'));
 
 const NavLink = props => (
   <Link
@@ -31,6 +32,7 @@ const Routes = ({ isLoggedIn }) => {
         <ul>
           <li><NavLink to="/airlines">Airlines</NavLink></li>
           <li><NavLink to="/airports">Airports</NavLink></li>
+          <li><NavLink to="/airplanes">Airplanes</NavLink></li>
           <li><NavLink to="/routeA">routeA</NavLink></li>
           <li><NavLink to="/routeB">routeB</NavLink></li>
         </ul>
@@ -42,6 +44,7 @@ const Routes = ({ isLoggedIn }) => {
             <RouteB path="/routeB" />
             <Airlines path="/airlines" />
             <Airports path="/airports" />
+            <Airplanes path="/airplanes" />
           </Router>
         </Suspense>
       </div>

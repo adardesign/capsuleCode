@@ -10,3 +10,8 @@
 - [x] mock API
 - [ ] modes / roles
 - [ ] storybook
+- [ ] test
+- [ ] coverage
+- [ ] CRUD
+- [ ] offline
+- [ ] background sync

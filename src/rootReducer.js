@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux'
 import airports from './containers/Airports/reducer'
+import airplanes from './containers/Airplanes/reducer'
 
 const login = (state = { isLoggedIn: false, roles: [], currentRole: '' }, action) => {
   if (action.type === 'loginSuccess') {
@@ -33,7 +34,8 @@ const rootReducer = combineReducers({
   appState,
   RouteA,
   RouteB,
-  airports
+  airports,
+  airplanes
 });
 
 export default rootReducer;
