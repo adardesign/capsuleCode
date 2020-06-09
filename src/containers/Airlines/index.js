@@ -21,13 +21,7 @@ const Airlines = () => {
     setPage(e.selected)
   }
 
-  const onGridSort = (e) => {
-    console.log(e)
-  }
-
-  const onRowsSelected = (event) =>{
-    debugger;
-  }
+  
 
 
   const columns = data && data.length && Object.keys(data[0]).map(e => ({
@@ -46,12 +40,11 @@ const Airlines = () => {
 
   return (
     <Layout header={{ name: "Airlines" }} classNames={{ header: 'routeB', body: 'Vermont' }}>
-      A list of airlines.
+      <p>A list of airlines.</p>
       {isLoading && <div className="loading">Loading...</div>}
       {data && (<DataGrid
         columns={columns}
         rows={rows}
-        onGridSort={onGridSort}
       />)}
 
       <ReactPaginate
@@ -63,8 +56,6 @@ const Airlines = () => {
         marginPagesDisplayed={2}
         pageRangeDisplayed={5}
         onPageChange={onPageChange}
-        onRowsDeselected={onRowsSelected}
-        onRowsSelected={onRowsSelected}
         selectBy="row"
         showCheckbox="true"
         containerClassName={'pagination'}

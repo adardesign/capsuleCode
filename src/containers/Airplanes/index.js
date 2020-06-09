@@ -46,7 +46,7 @@ const Airplanes = ({ loadAirplanesByPage, page, data, error, isLoading }) => {
       header={{ name: "Airplanes" }}
       classNames={{ header: "routeB", body: "Vermont" }}
     >
-      <h1>A list of airplanes.</h1>
+      <p>A list of airplanes.</p>
       {isLoading && <div className="loading">Loading...</div>}
       {error && <div className="loading">Error: {error.message}</div>}
       {!error && data && <DataGrid columns={columns} rows={rows} />}
