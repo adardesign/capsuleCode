@@ -11,12 +11,11 @@ const Airports = ({
   data,
   error,
   isLoading,
-  load,
 }) => {
   // first time
   useEffect(() => {
     loadAirportsByPage(page);
-  }, []);
+  }, [loadAirportsByPage, page]);
 
   const loadAirports = function ({ target }) {
     const dir = target.dataset.dir;

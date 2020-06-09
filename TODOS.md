@@ -14,5 +14,5 @@
 - [ ] test
 - [ ] coverage
 - [ ] CRUD
-- [ ] offline
+- [x] offline
 - [ ] background sync

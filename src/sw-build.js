@@ -1,22 +1,19 @@
-if (typeof importScripts === 'function') {
-  importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.0.0/workbox-sw.js');
-  /* global workbox */
-  if (workbox) {
-    console.log('Workbox is loaded');
-    workbox.core.skipWaiting();
-
-    /* injection point for manifest files.  */
-    workbox.precaching.precacheAndRoute(self.__WB_MANIFEST);
-
-    /* custom cache rules */
-     workbox.routing.registerRoute(
-      new workbox.routing.NavigationRoute(
-        new workbox.strategies.NetworkFirst({
-          cacheName: 'PRODUCTION',
-        })
-      )
-    );
-  } else {
-    // console.log('Workbox could not be loaded. No Offline support');
-  }
-}
+const workboxBuild = require('workbox-build');
+// NOTE: This should be run *AFTER* all your assets are built
+const buildSW = () => {
+  // This will return a Promise
+  workboxBuild
+    .injectManifest({
+      swSrc: 'src/sw-template.js', // this is your sw template file
+      swDest: 'build/service-worker.js', // this will be created in the build step
+      globDirectory: 'build',
+      globPatterns: ['**\/*.{html,js,css,json}'],
+    })
+    .then(({ count, size, warnings }) => {
+      // Optionally, log any warnings and details.
+      warnings.forEach(console.warn);
+      console.log(`${count} files will be precached, totaling ${size} bytes.`);
+    })
+    .catch(console.error);
+};
+buildSW();

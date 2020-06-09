@@ -5,12 +5,12 @@ import DataGrid from "react-data-grid";
 import { read } from "../../actions/crud";
 import "react-data-grid/dist/react-data-grid.css";
 
-const Airplanes = ({ loadAirplanesByPage, page, data, error, isLoading, load }) => {
+const Airplanes = ({ loadAirplanesByPage, page, data, error, isLoading }) => {
   
   // first time
   useEffect(() => {
     loadAirplanesByPage(page)
-  }, [])
+  }, [loadAirplanesByPage, page])
 
   const loadAirplanes = function ({target}) {
     const dir = target.dataset.dir;

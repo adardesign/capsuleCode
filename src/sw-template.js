@@ -20,3 +20,4 @@ if (typeof importScripts === 'function') {
       // console.log('Workbox could not be loaded. No Offline support');
     }
   }
+  
