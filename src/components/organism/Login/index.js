@@ -2,9 +2,12 @@ import React from 'react'
 
 export default function Login({onLogin}) {
     const onSubmit = (e) => {
+        e.preventDefault();
         // get values..
         // call onLogin
-        const values = {}
+        const values = {
+            // access natively 
+        }
         onLogin(values);
     }
     return (

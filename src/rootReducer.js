@@ -1,33 +1,41 @@
-import { combineReducers } from 'redux'
-import airports from './containers/Airports/reducer'
-import airplanes from './containers/Airplanes/reducer'
+import { combineReducers } from "redux";
+import airports from "./containers/Airports/reducer";
+import airplanes from "./containers/Airplanes/reducer";
 
-const login = (state = { isLoggedIn: false, roles: [], currentRole: '' }, action) => {
-  if (action.type === 'loginSuccess') {
-    return { ...state, isLoggedIn: true }
+const authToken = sessionStorage.getItem("token");
+const login = (
+  state = {
+    isLoggedIn: authToken || false,
+    authToken: authToken || null,
+    roles: [],
+    currentRole: "",
+  },
+  action
+) => {
+  if (action.type === "loginSuccess") {
+    return { ...state, isLoggedIn: true, authToken: action.payload };
   }
   return state;
-}
+};
 const appState = (state = { isLoading: false, isError: false }, action) => {
   return state;
-}
+};
 
-
-
-const RouteA = (state = {
-  isLoading: true,
-  data: null,
-  filters: [],
-  search: null,
-}, action) => {
+const RouteA = (
+  state = {
+    isLoading: true,
+    data: null,
+    filters: [],
+    search: null,
+  },
+  action
+) => {
   return state;
-}
+};
 
-const RouteB = (state = { isLoading: false, data: null, }, action) => {
+const RouteB = (state = { isLoading: false, data: null }, action) => {
   return state;
-}
-
-
+};
 
 const rootReducer = combineReducers({
   login,
@@ -35,7 +43,7 @@ const rootReducer = combineReducers({
   RouteA,
   RouteB,
   airports,
-  airplanes
+  airplanes,
 });
 
 export default rootReducer;

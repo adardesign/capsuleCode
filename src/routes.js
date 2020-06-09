@@ -8,6 +8,7 @@ const RouteB = lazy(() => import('./containers/RouteB'));
 const Airlines = lazy(() => import('./containers/Airlines'));
 const Airports = lazy(() => import('./containers/Airports'));
 const Airplanes = lazy(() => import('./containers/Airplanes'));
+const Cities = lazy(() => import('./containers/Cities'));
 
 const NavLink = props => (
   <Link
@@ -28,16 +29,17 @@ const Routes = ({ isLoggedIn }) => {
   if (!isLoggedIn) return <Login />
   return (
     <div className="row">
-      <nav className="column">
+      <nav className="column1">
         <ul>
           <li><NavLink to="/airlines">Airlines</NavLink></li>
           <li><NavLink to="/airports">Airports</NavLink></li>
           <li><NavLink to="/airplanes">Airplanes</NavLink></li>
+          <li><NavLink to="/cities">Cities</NavLink></li>
           <li><NavLink to="/routeA">routeA</NavLink></li>
           <li><NavLink to="/routeB">routeB</NavLink></li>
         </ul>
       </nav>
-      <div className="column">
+      <div className="column2">
         <Suspense fallback={<LazyLoadingPage />}>
           <Router>
             <RouteA path="/routeA" />
@@ -45,6 +47,7 @@ const Routes = ({ isLoggedIn }) => {
             <Airlines path="/airlines" />
             <Airports path="/airports" />
             <Airplanes path="/airplanes" />
+            <Cities path="/cities" />
           </Router>
         </Suspense>
       </div>
