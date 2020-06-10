@@ -9,13 +9,16 @@
 - [x] persistency in app  (session storage) 
 - [x] localized loading states 
 - [x] mock API
-- [x] memoize 
+- [x] memoize
 - [x] virtualized scrolling
-- [ ] CRUD
+- [ ] custom CSS scrollbar
+- [ ] custom css ellipses and tooltip 
+- [ ] css scroll effects
+- [ ] hook up to a real CRUD mock API
 - [ ] login modes / roles
 - [ ] test - RTL
-- [ ] coverage
-- [ ] github actions / bitbucket pipelines
+- [ ] test coverage
+- [ ] CI/CD github actions / bitbucket pipelines
 - [x] offline
 - [ ] background sync
 - [ ] unsynced list
@@ -23,3 +26,5 @@
 - [x] storybook
 - [ ] storybook knobs
 - [ ] storybook tests
+- [ ] memoize - redux selectors
+
