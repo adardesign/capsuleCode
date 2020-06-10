@@ -2,17 +2,24 @@
 
 - [x] redux
 - [x] routes
-- [x] layout
+- [x] reusable view template
 - [x] split code / suspense
 - [x] views / layout
 - [x] wired reusable actions 
 - [x] persistency in app  (session storage) 
 - [x] localized loading states 
 - [x] mock API
-- [ ] modes / roles
-- [ ] storybook
-- [ ] test
-- [ ] coverage
+- [x] memoize 
+- [x] virtualized scrolling
 - [ ] CRUD
+- [ ] login modes / roles
+- [ ] test - RTL
+- [ ] coverage
+- [ ] github actions / bitbucket pipelines
 - [x] offline
 - [ ] background sync
+- [ ] unsynced list
+- [ ] conditional background sync
+- [x] storybook
+- [ ] storybook knobs
+- [ ] storybook tests
