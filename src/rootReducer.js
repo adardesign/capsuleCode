@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 import airports from "./containers/Airports/reducer";
 import airplanes from "./containers/Airplanes/reducer";
+import routes from "./containers/Routes/reducer";
 
 const authToken = sessionStorage.getItem("token");
 const login = (
@@ -44,6 +45,7 @@ const rootReducer = combineReducers({
   RouteB,
   airports,
   airplanes,
+  routes,
 });
 
 export default rootReducer;

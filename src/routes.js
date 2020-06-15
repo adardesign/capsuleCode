@@ -11,6 +11,7 @@ const Airlines = lazy(() => import("./containers/Airlines"));
 const Airports = lazy(() => import("./containers/Airports"));
 const Airplanes = lazy(() => import("./containers/Airplanes"));
 const Cities = lazy(() => import("./containers/Cities"));
+const FlightRoutes = lazy(() => import("./containers/Routes"));
 
 
 
@@ -25,6 +26,7 @@ const Routes = ({ isLoggedIn }) => {
           { route: "airports", name: "Airports" },
           { route: "airplanes", name: "Airplanes" },
           { route: "cities", name: "Cities" },
+          { route: "routes", name: "Routes" },
           { route: "routeA", name: "routeA" },
           { route: "routeB", name: "routeB" },
         ]}
@@ -38,6 +40,7 @@ const Routes = ({ isLoggedIn }) => {
             <Airports path="/airports" />
             <Airplanes path="/airplanes" />
             <Cities path="/cities" />
+            <FlightRoutes path="/routes" />
           </Router>
         </Suspense>
       </div>

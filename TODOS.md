@@ -11,6 +11,7 @@
 - [x] mock API
 - [x] memoize
 - [x] virtualized scrolling
+- [ ] Reducer factory
 - [ ] custom CSS scrollbar
 - [ ] custom css ellipses and tooltip 
 - [ ] css scroll effects
@@ -27,4 +28,5 @@
 - [ ] storybook knobs
 - [ ] storybook tests
 - [ ] memoize - redux selectors
+
 

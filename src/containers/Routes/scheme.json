@@ -1,0 +1,10 @@
+export default {
+  "date": "",
+  "duration": 0,
+  "origin": "",
+  "destination": "",
+  "airline": "",
+  "aircraft": "",
+  "status": "",
+  "connectionId": ""
+}

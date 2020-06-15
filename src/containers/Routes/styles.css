@@ -1,0 +1,18 @@
+.list-group{
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.showCreateModal{
+    position: fixed;
+    right: 10px;
+    top: 10px;
+    z-index: 1;   
+}
+
+.modal{
+    position: fixed;
+    display: block;
+    background: rgba(0, 0, 0, .8);
+}
+
