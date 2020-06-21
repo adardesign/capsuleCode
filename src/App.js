@@ -11,7 +11,9 @@ export default function App() {
 
   return (
     <div className="App">
-      <h1>APP</h1>
+      <header>
+        <h1>Airline Manager 3.0</h1>
+      </header>
       <Provider store={storeValue}>
         <Routes />
       </Provider>

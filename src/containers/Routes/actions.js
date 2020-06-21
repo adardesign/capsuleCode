@@ -19,8 +19,15 @@ import {
 // by order of CRUD
 console.log(process.env)
 const baseRoute = `https://crudcrud.com/api/${process.env.REACT_APP_CRUD_ID}/routes/`
-export function createRoute(dispatch) {
 
+export function createRoute(data) {
+    return function (dispatch, getState) {
+        axios.post(baseRoute, data)
+            .then(response => {
+                dispatch({ type: CREATE_ROUTE_SUCCESS, payload: response.data })
+            })
+            .catch(error => console.log('error', error));
+    }
 }
 
 export function readRoutes(id) {
@@ -36,7 +43,17 @@ export function readRoute(dispatch) {
 
 }
 
-export function updateRoute(dispatch) {
+export function updateRoute(data) {
+    return function (dispatch, getState) {
+        const { _id } = data;
+        const sendData = { ...data }
+        delete sendData._id
+        axios.put(baseRoute + _id, sendData)
+            .then(response => {
+                dispatch({ type: UPDATE_ROUTE_SUCCESS, payload: response.data })
+            })
+            .catch(error => console.log('error', error));
+    }
 
 }
 

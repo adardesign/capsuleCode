@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import normalizeDateTimeLocal from '../../utils/normalizeDateTimeLocal';
 
 export default function RouteForm({ onSave, onDelete, data }) {
     const [state, setState] = useState(data);
@@ -23,10 +24,14 @@ export default function RouteForm({ onSave, onDelete, data }) {
     const deleteRecord = () => {
         onDelete(state._id)
     }
-    const saveRecord = () => {
+
+    const saveRecord = (event) => {
+        event.preventDefault();
         onSave(state)
     }
+
     const { _id } = state;
+
 
     return (
         <form>
@@ -39,12 +44,12 @@ export default function RouteForm({ onSave, onDelete, data }) {
                 </div>)}
                 {['date', 'origin', 'destination', 'airline', 'aircraft', 'duration'].map(prop => {
                     return (
-                        <div className="card-body">
+                        <div className="card-body" key={prop}>
                             <div className="input-group mb-3">
                                 <div className="input-group-prepend">
                                     <span className="input-group-text" id="inputGroup-sizing-default">{prop}</span>
                                 </div>
-                                <input onChange={onChange} type={prop === 'date' ? 'datetime-local' : 'text'} name={prop} value={state[prop]} className="form-control" />
+                                <input onChange={onChange} type={prop === 'date' ? 'datetime-local' : 'text'} required name={prop} value={prop === 'date' ? normalizeDateTimeLocal(state[prop]) : state[prop]} className="form-control" />
                             </div>
                         </div>
                     )
@@ -60,8 +65,8 @@ export default function RouteForm({ onSave, onDelete, data }) {
             </div>
             <div className="card-footer">
                 <div className="row">
-                    <div className="col-2"> <button type="submit" className="btn btn-outline-info mb-2" onClick={saveRecord}>update</button></div>
-                    {onDelete && <div className="col-2"><button type="button" className="btn btn-outline-danger" onClick={deleteRecord}>Delete</button></div>}
+                    <div className="col-2"> <button type="submit" className="btn btn-outline-info mb-2" onClick={saveRecord}>{_id ? 'update' : 'create'}</button></div>
+                    {_id && <div className="col-2"><button type="button" className="btn btn-outline-danger" onClick={deleteRecord}>Delete</button></div>}
                 </div>
             </div>
         </form>

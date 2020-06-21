@@ -17,11 +17,16 @@ function CrudViewer({ data, create, read, update, delete_ }) {
 
 
     const onSave = (data) => {
-        [data._id ? 'update' : 'create'](data);
+        if (data._id) {
+            update(data)
+        } else {
+            create(data);
+        }
     }
 
     const deleteRecord = () => {
-        delete_(selected._id);
+        delete_(selected._id)
+        setSelected(null)
     }
 
 
@@ -55,7 +60,7 @@ function CrudViewer({ data, create, read, update, delete_ }) {
                         )}
                         {!selected && (
                             <div>
-                                non selected <br />
+                                <h2>non selected</h2>
                                 <button type="button" className="btn btn-primary" onClick={toggleShowCreateModal}>Create</button>
 
                             </div>
@@ -77,7 +82,6 @@ function CrudViewer({ data, create, read, update, delete_ }) {
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" onClick={toggleShowCreateModal}>Close</button>
-                            <button type="button" className="btn btn-primary">Save changes</button>
                         </div>
                     </div>
                 </div>

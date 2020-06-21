@@ -40,12 +40,11 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(readRoutes())
         },
         update: (data) => {
-            updateRoute()
+            dispatch(updateRoute(data))
         },
         delete_: (id) => {
             dispatch(deleteRoute(id))
         },
-
     };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Routes)
