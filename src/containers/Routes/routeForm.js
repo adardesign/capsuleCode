@@ -7,9 +7,7 @@ export default function RouteForm({ onSave, onDelete, data }) {
     }, [data])
 
     if (!data || !Object.keys(state).length) return null;
-    const { _id } = state;
 
-    console.log(data)
     const onChange = ({ target }) => {
         // if valid
         const value = target.value;
@@ -24,13 +22,11 @@ export default function RouteForm({ onSave, onDelete, data }) {
 
     const deleteRecord = () => {
         onDelete(state._id)
-        setTimeout(function () {
-            setState({});
-        }, 1000);
     }
     const saveRecord = () => {
         onSave(state)
     }
+    const { _id } = state;
 
     return (
         <form>
@@ -48,7 +44,7 @@ export default function RouteForm({ onSave, onDelete, data }) {
                                 <div className="input-group-prepend">
                                     <span className="input-group-text" id="inputGroup-sizing-default">{prop}</span>
                                 </div>
-                                <input onChange={onChange} type="text" name={prop} value={state[prop]} className="form-control" />
+                                <input onChange={onChange} type={prop === 'date' ? 'datetime-local' : 'text'} name={prop} value={state[prop]} className="form-control" />
                             </div>
                         </div>
                     )

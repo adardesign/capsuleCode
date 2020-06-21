@@ -45,8 +45,7 @@ export function deleteRoute(id) {
         axios.delete(`${baseRoute}${id}`)
             .then(response => {
                 dispatch({ type: DELETE_ROUTE_SUCCESS, payload: response.data })
-            }).then(()=>{
-                readRoutes();
+                readRoutes()(dispatch);
             })
             .catch(error => console.log('error', error));
     }
