@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { createRoute, readRoutes, updateRoute, deleteRoute } from './actions'
+import { bindActionCreators } from 'redux'
+import { createRoute as create, readRoutes as read, updateRoute as update, deleteRoute as delete_ } from './actions'
 import CrudViewer from './viewer'
 
 // TODO:
@@ -10,6 +11,7 @@ export const Routes = (props) => {
 
     const { isLoading, data, error } = props;
     const { create, read, update, delete_ } = props;
+    console.log(data)
     useEffect(() => {
         read()
         return () => {
@@ -31,20 +33,17 @@ const mapStateToProps = (state) => ({
 
 
 
-const mapDispatchToProps = (dispatch) => {
+function mapDispatchToProps(dispatch) {
     return {
-        create: (data) => {
-            dispatch(createRoute(data))
-        },
-        read: () => {
-            dispatch(readRoutes())
-        },
-        update: (data) => {
-            dispatch(updateRoute(data))
-        },
-        delete_: (id) => {
-            dispatch(deleteRoute(id))
-        },
-    };
-};
+        dispatch,
+        ...bindActionCreators({
+            create,
+            read,
+            update,
+            delete_
+        }, dispatch)
+    }
+}
+
+
 export default connect(mapStateToProps, mapDispatchToProps)(Routes)

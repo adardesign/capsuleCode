@@ -4,7 +4,7 @@ import './styles.css'
 import RouteForm from './routeForm';
 import schema from './scheme'
 function CrudViewer({ data, create, read, update, delete_ }) {
-
+    console.log(data)
     const [selected, setSelected] = useState();
     const [showCreateModal, setShowCreateModal] = useState(false);
     const selectNode = ({ target }) => {
@@ -16,11 +16,18 @@ function CrudViewer({ data, create, read, update, delete_ }) {
     }
 
 
-    const onSave = (data) => {
+    const onSave = (saveData) => {
         if (data._id) {
-            update(data)
+            update(saveData).then((response => {
+                console.log(response);
+            }))
         } else {
-            create(data);
+            create(saveData).then(res => {
+                setSelected(() => {
+                    return res.data;
+                });
+                setShowCreateModal(false);
+            });
         }
     }
 

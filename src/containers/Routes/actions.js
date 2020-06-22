@@ -21,22 +21,28 @@ console.log(process.env)
 const baseRoute = `https://crudcrud.com/api/${process.env.REACT_APP_CRUD_ID}/routes/`
 
 export function createRoute(data) {
-    return function (dispatch, getState) {
-        axios.post(baseRoute, data)
-            .then(response => {
-                dispatch({ type: CREATE_ROUTE_SUCCESS, payload: response.data })
-            })
-            .catch(error => console.log('error', error));
+    return async function (dispatch, getState) {
+        try {
+            const response = await axios.post(baseRoute, data);
+            dispatch({ type: CREATE_ROUTE_SUCCESS, payload: response.data });
+            return response;
+        }
+        catch (error) {
+            return console.log('error', error);
+        }
     }
 }
 
 export function readRoutes(id) {
-    return function (dispatch, getState) {
-        axios.get(baseRoute)
-            .then(response => {
-                dispatch({ type: READ_ROUTES_SUCCESS, payload: response.data })
-            })
-            .catch(error => console.log('error', error));
+    return async function (dispatch, getState) {
+        try {
+            const response = await axios.get(baseRoute);
+            dispatch({ type: READ_ROUTES_SUCCESS, payload: response.data });
+            return response;
+        }
+        catch (error) {
+            return console.log('error', error);
+        }
     }
 }
 export function readRoute(dispatch) {
@@ -44,27 +50,33 @@ export function readRoute(dispatch) {
 }
 
 export function updateRoute(data) {
-    return function (dispatch, getState) {
+    return async function (dispatch, getState) {
         const { _id } = data;
         const sendData = { ...data }
         delete sendData._id
-        axios.put(baseRoute + _id, sendData)
-            .then(response => {
-                dispatch({ type: UPDATE_ROUTE_SUCCESS, payload: response.data })
-            })
-            .catch(error => console.log('error', error));
+        try {
+            const response = await axios.put(baseRoute + _id, sendData);
+            dispatch({ type: UPDATE_ROUTE_SUCCESS, payload: response.data });
+            return response;
+        }
+        catch (error) {
+            return console.log('error', error);
+        }
     }
 
 }
 
 export function deleteRoute(id) {
-    return function (dispatch, getState) {
-        axios.delete(`${baseRoute}${id}`)
-            .then(response => {
-                dispatch({ type: DELETE_ROUTE_SUCCESS, payload: response.data })
-                readRoutes()(dispatch);
-            })
-            .catch(error => console.log('error', error));
+    return async function (dispatch, getState) {
+        try {
+            const response = await axios.delete(`${baseRoute}${id}`);
+            dispatch({ type: DELETE_ROUTE_SUCCESS, payload: response.data });
+            readRoutes()(dispatch);
+            return response;
+        }
+        catch (error) {
+            return console.log('error', error);
+        }
     }
 }
 

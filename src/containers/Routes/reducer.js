@@ -23,6 +23,7 @@ const ROUTES = (
   }
   if (action.type === CREATE_ROUTE_SUCCESS) {
     const data = [...state.data, action.payload]
+    console.log(data);
     return { ...state, isLoading: false, data };
   }
 
