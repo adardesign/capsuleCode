@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
-import DateFormat from '../../components/atoms/dateFormat';
+import DateFormat from '../../atoms/dateFormat';
+import Editor from './editor';
 import './styles.css'
-import RouteForm from './routeForm';
-import schema from './scheme'
-function CrudViewer({ data, create, read, update, delete_ }) {
-    console.log(data)
+
+function CrudViewer({ schema, data, create, read, update, delete_ }) {
     const [selected, setSelected] = useState();
     const [showCreateModal, setShowCreateModal] = useState(false);
     const selectNode = ({ target }) => {
@@ -63,7 +62,7 @@ function CrudViewer({ data, create, read, update, delete_ }) {
                     </div>
                     <div className="col-md-8 col-sm-12 col-xs-12">
                         {selected && (
-                            <RouteForm onSave={onSave} onDelete={deleteRecord} data={selected} />
+                            <Editor onSave={onSave} onDelete={deleteRecord} data={selected} />
                         )}
                         {!selected && (
                             <div>
@@ -85,7 +84,7 @@ function CrudViewer({ data, create, read, update, delete_ }) {
                             </button>
                         </div>
                         <div className="modal-body">
-                            <RouteForm onSave={onSave} data={schema} />
+                            <Editor onSave={onSave} data={schema} />
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" onClick={toggleShowCreateModal}>Close</button>

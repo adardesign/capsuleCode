@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import normalizeDateTimeLocal from '../../utils/normalizeDateTimeLocal';
+import normalizeDateTimeLocal from '../../../utils/normalizeDateTimeLocal';
 
-export default function RouteForm({ onSave, onDelete, data }) {
+export default function Editor({ onSave, onDelete, data }) {
     const [state, setState] = useState(data);
     useEffect(() => {
         setState(data);
