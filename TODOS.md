@@ -11,7 +11,10 @@
 - [x] mock API
 - [x] memoize
 - [x] virtualized scrolling
+- [x] classnames
+- [ ] lazy-initial-state
 - [ ] Reducer factory
+- [ ] form change state (by name, value - with checkbox support)
 - [x] custom CSS scrollbar
 - [ ] custom css ellipses and tooltip 
 - [ ] css scroll effects
@@ -28,5 +31,5 @@
 - [ ] storybook knobs
 - [ ] storybook tests
 - [ ] memoize - redux selectors
-
+- [ ] Source Code Analysis Tools | OWASP
 

@@ -4,6 +4,7 @@ import Layout from "../../components/template/layout";
 import DataGrid from "react-data-grid";
 import { read } from "../../actions/crud";
 import "react-data-grid/dist/react-data-grid.css";
+import './styles.css'
 
 const Airplanes = ({ loadAirplanesByPage, page, data, error, isLoading }) => {
   
@@ -47,6 +48,14 @@ const Airplanes = ({ loadAirplanesByPage, page, data, error, isLoading }) => {
       classNames={{ header: "routeB", body: "Vermont" }}
     >
       <p>A list of airplanes.</p>
+
+      <div class="scrollbox">
+	<ul>
+  {Array(20).fill(1).map((ele,index)=><li key={index}>{index}</li>)}
+		<li>The end!</li>
+		<li>No shadow there.</li>
+	</ul>
+</div>
       {isLoading && <div className="loading">Loading...</div>}
       {error && <div className="loading">Error: {error.message}</div>}
       {!error && data && <DataGrid columns={columns} rows={rows} />}
