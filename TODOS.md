@@ -12,10 +12,10 @@
 - [x] memoize
 - [x] virtualized scrolling
 - [ ] Reducer factory
-- [ ] custom CSS scrollbar
+- [x] custom CSS scrollbar
 - [ ] custom css ellipses and tooltip 
 - [ ] css scroll effects
-- [ ] hook up to a real CRUD mock API
+- [x] hook up to a real CRUD mock API
 - [ ] login modes / roles
 - [ ] test - RTL
 - [ ] test coverage
