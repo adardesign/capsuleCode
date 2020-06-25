@@ -11,7 +11,10 @@
     /* Opera doesn't support this in the shorthand */
     background-attachment: local, local, scroll, scroll;
   }
-  
+
+  .rdg *{
+      background: transparent!important;
+  }
   
   .scrollbox {
     overflow: auto;
