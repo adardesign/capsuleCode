@@ -7,19 +7,19 @@ import "react-data-grid/dist/react-data-grid.css";
 import './styles.css'
 
 const Airplanes = ({ loadAirplanesByPage, page, data, error, isLoading }) => {
-  
+
   // first time
   useEffect(() => {
     loadAirplanesByPage(page)
   }, [loadAirplanesByPage, page])
 
-  const loadAirplanes = function ({target}) {
+  const loadAirplanes = function ({ target }) {
     const dir = target.dataset.dir;
     let newPage;
-    if(dir === "previous") {
-      newPage = --page 
-    }else{
-      newPage = ++page 
+    if (dir === "previous") {
+      newPage = --page
+    } else {
+      newPage = ++page
     }
     loadAirplanesByPage(newPage);
   };
@@ -49,17 +49,17 @@ const Airplanes = ({ loadAirplanesByPage, page, data, error, isLoading }) => {
     >
       <p>A list of airplanes.</p>
 
-      <div class="scrollbox">
-	<ul>
-  {Array(20).fill(1).map((ele,index)=><li key={index}>{index}</li>)}
-		<li>The end!</li>
-		<li>No shadow there.</li>
-	</ul>
-</div>
+      {/* <div class="scrollbox">
+        <ul>
+          {Array(20).fill(1).map((ele, index) => <li key={index}>{index}</li>)}
+          <li>The end!</li>
+          <li>No shadow there.</li>
+        </ul>
+      </div> */}
       {isLoading && <div className="loading">Loading...</div>}
       {error && <div className="loading">Error: {error.message}</div>}
       {!error && data && <DataGrid columns={columns} rows={rows} />}
-      { page > 0 &&  <button onClick={loadAirplanes} data-dir="previous">
+      {page > 0 && <button onClick={loadAirplanes} data-dir="previous">
         load previous Airplanes page: {page - 1}
       </button>
       }

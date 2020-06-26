@@ -9,9 +9,11 @@
 - [x] persistency in app  (session storage) 
 - [x] localized loading states 
 - [x] mock API
-- [x] memoize
+- [x] memoize components 
+- [ ] memoize functions 
 - [x] virtualized scrolling
 - [x] classnames
+- [x] colocation of route/container related files
 - [ ] lazy-initial-state
 - [ ] Reducer factory
 - [ ] form change state (by name, value - with checkbox support)
@@ -31,5 +33,7 @@
 - [ ] storybook knobs
 - [ ] storybook tests
 - [ ] memoize - redux selectors
-- [ ] Source Code Analysis Tools | OWASP
-
+- [ ] Source Code Analysis Tools | OWASP 
+- [ ] setup IDE prettier
+- [ ] security  
+ 
