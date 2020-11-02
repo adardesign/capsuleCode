@@ -54,7 +54,6 @@ function CrudViewer({ schema, data, create, read, update, delete_ }) {
                                             <span className="badge badge-primary">{origin}</span>{' '} ➡️ {' '}
                                             <span className="badge badge-primary">{destination}</span>
                                         </div>
-
                                     </li>
                                 )
                             })}

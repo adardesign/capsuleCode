@@ -3,20 +3,21 @@ import { connect } from "react-redux";
 import Layout from "../../components/template/layout";
 import CitiesViewer from "./cities";
 
-const Cities = ({}) => {
+
+const Cities = ({ }) => {
   return (
     <Layout
       header={{ name: "Cities" }}
       classNames={{ header: "cities-head", body: "cities" }}
     >
-        <CitiesViewer />
+      <CitiesViewer />
     </Layout>
   );
 };
 
-const mapStateToProps = (state) => {};
+const mapStateToProps = (state) => { };
 
-const mapDispatchToProps = (dispatch) => {};
+const mapDispatchToProps = (dispatch) => { };
 export default Cities;
 
 // export default connect(mapStateToProps, mapDispatchToProps)(Cities);
