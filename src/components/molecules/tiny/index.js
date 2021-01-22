@@ -14,67 +14,89 @@ import Highcharts from "highcharts";
 import HC_exporting from "highcharts/modules/exporting";
 HC_exporting(Highcharts);
 
+
+const getValues = () => {
+  const random = ()=> Math.random()*100
+  return {
+    credits: {
+      enabled: true,
+    },
+    xAxis: {
+      categories: [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
+      ],
+    },
+    series: [
+      {
+        data: [
+          random(),
+          random(),
+          random(),
+          random(),
+          random(),
+          random(),
+          random(),
+          random(),
+          random(),
+          random(),
+          random(),
+          random(),
+        ],
+      },
+    ],
+  }
+}
+
 function timeout(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 const App = () => {
   const getSVG = async (data) => {
-    //const container = document.createElement("div");
-    // container.id = "container";
-    const chart = Highcharts.chart("container", {
-      credits: {
-        enabled: true,
-      },
-      xAxis: {
-        categories: [
-          "Jan",
-          "Feb",
-          "Mar",
-          "Apr",
-          "May",
-          "Jun",
-          "Jul",
-          "Aug",
-          "Sep",
-          "Oct",
-          "Nov",
-          "Dec",
-        ],
-      },
-      series: [
-        {
-          data: [
-            29.9,
-            71.5,
-            106.4,
-            129.2,
-            144.0,
-            176.0,
-            135.6,
-            148.5,
-            216.4,
-            194.1,
-            95.6,
-            54.4,
-          ],
-        },
-      ],
-    });
-    await timeout(300);
+    const chart = Highcharts.chart("container", getValues());
+    await timeout(1300);
 
     // console.log(Highcharts);
     console.log(chart.getSVG());
-    return chart.getSVG();
+    return "<div style='border:1px solid #ccc;'>"+chart.getSVG()+"</div>";
   };
   useEffect(async () => {
-      const content = await getSVGs()
+
+    let content = "<img src='https://via.placeholder.com/950x165&text=NPS%20letterhead'/>"  
+      content += `<br/><br/><br/><strong>Client Name</strong>: Johnny Doe<br>
+      <strong>DOB</strong>: 2/5/2021<br>
+      <strong>Insurance</strong> ID#<br>
+      <strong>Date of Report:</strong> 6/29/2021<br>`
+      
+      content += "<p> </p><p> </p>"
+      content += `<h2>Crisis Plan:</h2>In case of inclement weather, therapists will not be expected to provide services. If a medical emergency arises, therapists are advised to call 911 and parents will be
+      notified. Emergency contact information will be kept in the child’s files to be used if the parents are not present. In event of severe change in behavior; the therapist
+      should remove the child to a safe environment, notify the parents, and the BCBA. The office at Master Faster should be called: 845-477-5000. The incident should be
+      recorded on a descriptive data sheet including the antecedent, behavior and consequence`
+      content += "<p> </p><p> </p>"
+      content += "<h2>Skill Area: Social</h2>"
+      content +=  await getSVG();
+      content += "<p> </p><p> </p>"
+
+      content += "<h2>Skill Area: Behavior Management</h2>";
+      content += await getSVG();
       setContentEditor(content);
     return () => {
       // cleanup
     };
   }, []);
-  const [contentEditor, setContentEditor] = useState("<h1>TEST</h1><img src='https://pdf-lib.js.org/img/logo-full.svg' width='150' />"
+  const [contentEditor, setContentEditor] = useState("<h1>rendering..</h1>"
   );
   const handleEditorChange = (content, editor) => {
     console.log("Content was updated:", content, editor);
@@ -85,7 +107,7 @@ const App = () => {
 
   return (
     <>
-      <div id="container"></div>
+      <div style={{display:"none"}} id="container"></div>
       <Editor
         initialValue="TEST"
         init={{
