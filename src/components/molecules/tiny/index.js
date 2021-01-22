@@ -9,6 +9,7 @@ import "tinymce/plugins/table";
 import "tinymce/skins/ui/oxide/skin.min.css";
 import "tinymce/skins/ui/oxide/content.min.css";
 import "tinymce/skins/content/default/content.min.css";
+import "../../../utils/plugins/reportBuilder";
 import { Editor } from "@tinymce/tinymce-react";
 import Highcharts from "highcharts";
 import HC_exporting from "highcharts/modules/exporting";
@@ -117,7 +118,7 @@ const App = () => {
           height: 500,
           menubar: false,
           plugins: [
-            "link image",
+            "link image example",
             "table paste export pagebreak",
             "highcharts highchartssvg",
             "advlist autolink lists link image charmap print preview anchor",
@@ -126,7 +127,7 @@ const App = () => {
             "highcharts highchartssvg noneditable",
           ],
           toolbar:
-            "pagebreak insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | export",
+            "example pagebreak insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | export",
         }}
         value={contentEditor}
         onEditorChange={handleEditorChange}
