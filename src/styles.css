@@ -22,7 +22,6 @@
   clear: both;
 }
 
-
 .pagination ul {
   display: inline-block;
   padding-left: 15px;
@@ -36,4 +35,15 @@
 
 .pagination li.active {
   outline: 1px solid #000;
+}
+
+/*report builder*/
+.widget-datepicker-container{
+  margin: 15px 0;
+}
+.editor-widget-datepicker {
+  width: 100% !important;
+  border: 1px solid #ccc !important;
+  line-height: 21px !important;
+  padding: 3px 10px !important;
 }

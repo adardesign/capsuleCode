@@ -10,67 +10,19 @@ import "tinymce/skins/ui/oxide/skin.min.css";
 import "tinymce/skins/ui/oxide/content.min.css";
 import "tinymce/skins/content/default/content.min.css";
 import "../../../utils/plugins/reportBuilder";
+import "../../../utils/plugins/editorAddWidget";
 import { Editor } from "@tinymce/tinymce-react";
-import Highcharts from "highcharts";
-import HC_exporting from "highcharts/modules/exporting";
-HC_exporting(Highcharts);
 
 
-const getValues = () => {
-  const random = ()=> Math.random()*100
-  return {
-    credits: {
-      enabled: true,
-    },
-    xAxis: {
-      categories: [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec",
-      ],
-    },
-    series: [
-      {
-        data: [
-          random(),
-          random(),
-          random(),
-          random(),
-          random(),
-          random(),
-          random(),
-          random(),
-          random(),
-          random(),
-          random(),
-          random(),
-        ],
-      },
-    ],
-  }
-}
+import getChartSVG from "../../../utils/plugins/getChartSVG"
 
-function timeout(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
+
+
 
 const App = () => {
-  const getSVG = async (data) => {
-    const chart = Highcharts.chart("container", getValues());
-    await timeout(1300);
-
-    // console.log(Highcharts);
-    console.log(chart.getSVG());
-    return "<div style='border:1px solid #ccc;'>"+chart.getSVG()+"</div>";
+  const getSVG = async () => {
+    const data = await getChartSVG(); 
+    return data;
   };
   useEffect(async () => {
 
@@ -100,7 +52,7 @@ const App = () => {
   const [contentEditor, setContentEditor] = useState("<h1>rendering..</h1>"
   );
   const handleEditorChange = (content, editor) => {
-    console.log("Content was updated:", content, editor);
+    //console.log("Content was updated:", content, editor);
     // setContentEditor("");
   };
 
@@ -114,12 +66,12 @@ const App = () => {
         init={{
           extended_valid_elements: "svg[*],defs[*],pattern[*],desc[*],metadata[*],g[*],mask[*],path[*],line[*],marker[*],rect[*],circle[*],ellipse[*],polygon[*],polyline[*],linearGradient[*],radialGradient[*],stop[*],image[*],view[*],text[*],textPath[*],title[*],tspan[*],glyph[*],symbol[*],switch[*],use[*]",
           skin: true,
-          content_css: false,
+          content_css: true,
           height: 500,
-          menubar: false,
+          menubar: true,
           plugins: [
-            "link image example",
-            "table paste export pagebreak",
+            "link image addWidget example",
+            "table paste pagebreak",
             "highcharts highchartssvg",
             "advlist autolink lists link image charmap print preview anchor",
             "searchreplace visualblocks code fullscreen",
@@ -127,7 +79,7 @@ const App = () => {
             "highcharts highchartssvg noneditable",
           ],
           toolbar:
-            "example pagebreak insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | export",
+            "addWidget example pagebreak insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | export",
         }}
         value={contentEditor}
         onEditorChange={handleEditorChange}
