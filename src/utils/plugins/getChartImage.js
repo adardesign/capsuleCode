@@ -3,7 +3,7 @@ import HC_exporting from "highcharts/modules/exporting";
 import { resolve } from "tinymce/themes/silver/theme";
 HC_exporting(Highcharts);
 
-export default function getChartData() {
+export default function getChartData(data = {}) {
   return new Promise(function (resolve, reject) {
     // Reference: http://techslides.com/save-svg-as-an-image
 
@@ -11,9 +11,12 @@ export default function getChartData() {
 
     // Render a Highchart chart.
     var chart = new Highcharts.Chart({
+      title: {
+        text: data.skill || "my chart",
+      },
       chart: {
         renderTo: chartContainer,
-        height: 400,
+        width: 1000,
       },
       xAxis: {
         categories: [
@@ -63,7 +66,7 @@ export default function getChartData() {
     // Create a canvas DOM element used to store the svg temporarily.
     // http://www.w3schools.com/tags/ref_canvas.asp
     var canvas = document.createElement("canvas");
-    canvas.width = 600;
+    canvas.width = 1000;
     canvas.height = 400;
 
     // Get a context to the canvas element, which can be used to draw on the canvas.
@@ -86,6 +89,7 @@ export default function getChartData() {
 
       //  Wrap the dataurl in html.
       var pngTag = '<img src="' + pngSrc + '">';
+
       resolve(pngTag);
 
       // Set png to container.

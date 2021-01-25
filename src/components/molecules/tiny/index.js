@@ -12,21 +12,16 @@ import "tinymce/skins/content/default/content.min.css";
 import "../../../utils/plugins/reportBuilder";
 import "../../../utils/plugins/editorAddWidget";
 import { Editor } from "@tinymce/tinymce-react";
+import getChartImage from "../../../utils/plugins/getChartImage"
 
 
-import getChartSVG from "../../../utils/plugins/getChartSVG"
-
-
+// https://www.tiny.cloud/docs/demo/custom-toolbar-menu-button/
 
 
 const App = () => {
-  const getSVG = async () => {
-    const data = await getChartSVG(); 
-    return data;
-  };
   useEffect(async () => {
 
-    let content = "<img src='https://via.placeholder.com/950x165&text=NPS%20letterhead'/>"  
+    let content = `<img class="mceNonEditable" src='https://via.placeholder.com/950x165&text=NPS%20letterhead'/>`  
       content += `<br/><br/><br/><strong>Client Name</strong>: Johnny Doe<br>
       <strong>DOB</strong>: 2/5/2021<br>
       <strong>Insurance</strong> ID#<br>
@@ -39,11 +34,11 @@ const App = () => {
       recorded on a descriptive data sheet including the antecedent, behavior and consequence`
       content += "<p> </p><p> </p>"
       content += "<h2>Skill Area: Social</h2>"
-      content +=  await getSVG();
+      content +=  await getChartImage();
       content += "<p> </p><p> </p>"
 
       content += "<h2>Skill Area: Behavior Management</h2>";
-      content += await getSVG();
+      content += await getChartImage();
       setContentEditor(content);
     return () => {
       // cleanup
@@ -70,7 +65,7 @@ const App = () => {
           height: 500,
           menubar: true,
           plugins: [
-            "link image addWidget example",
+            "link image addWidget example noneditable",
             "table paste pagebreak",
             "highcharts highchartssvg",
             "advlist autolink lists link image charmap print preview anchor",

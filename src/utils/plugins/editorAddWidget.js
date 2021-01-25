@@ -1,6 +1,7 @@
 import tinymce from "tinymce/tinymce";
 import Litepicker from "litepicker";
 import getChartImage from "./getChartImage";
+import getSavedText from "./getSavedText";
 
 tinymce.PluginManager.add("addWidget", function (editor, url) {
   var openDialog = function () {
@@ -10,12 +11,28 @@ tinymce.PluginManager.add("addWidget", function (editor, url) {
         type: "tabpanel",
         tabs: [
           {
+            name: "saved text",
+            title: "✏️ Saved text",
+            items: [
+              {
+                type: "listbox", // component type
+                name: "savedText", // identifier
+                label: "Saved text",
+                disabled: false, // disabled state
+                items: [
+                  { text: "Crisis plan", value: "1" },
+                  { text: "therapist, date", value: "2" },
+                ],
+              },
+            ],
+          },
+          {
             name: "widget",
             title: "📈 skill",
             items: [
               {
                 type: "listbox", // component type
-                name: "ListBoxA", // identifier
+                name: "skillWidget", // identifier
                 label: "skill",
                 disabled: false, // disabled state
                 items: [
@@ -44,22 +61,7 @@ tinymce.PluginManager.add("addWidget", function (editor, url) {
               },
             ],
           },
-          {
-            name: "saved text",
-            title: "✏️ signature",
-            items: [
-              {
-                type: "listbox", // component type
-                name: "ListBoxA", // identifier
-                label: "Saved text",
-                disabled: false, // disabled state
-                items: [
-                  { text: "Crisis plan", value: "1" },
-                  { text: "therapist, date", value: "2" },
-                ],
-              },
-            ],
-          },
+         
           {
             name: "signature",
             title: "✍️ signature",
@@ -128,11 +130,11 @@ tinymce.PluginManager.add("addWidget", function (editor, url) {
       onSubmit: async function (api) {
         var data = api.getData();
         const text = await Promise.resolve("async value");
-        console.log(editor);
+        console.log(data);
 
-        if ("s") {
+        if (data.skillWidget) {
           var image = await getChartImage({
-            skill: "skill",
+            skill: data.skillWidget,
             dateRange: "12333-3333",
             showSummary: true,
             showBaseline: true,
@@ -140,11 +142,14 @@ tinymce.PluginManager.add("addWidget", function (editor, url) {
 
           editor.insertContent(image);
         }
+        if(data.savedText){
+          const text = await getSavedText(data.savedText)
+          editor.insertContent(text);
+        }
 
-        setTimeout(function () {
-          editor.insertContent("dynamic value BH");
-          api.close();
-        }, 3000);
+        api.close();
+
+
         console.log(data);
         // Insert content when the window form is submitted
       },
