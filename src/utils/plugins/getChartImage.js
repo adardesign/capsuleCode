@@ -88,7 +88,17 @@ export default function getChartData(data = {}) {
       var pngSrc = canvas.toDataURL("image/png");
 
       //  Wrap the dataurl in html.
-      var pngTag = '<img src="' + pngSrc + '">';
+
+
+      var pngTag = `<div>
+      <strong>Target</strong>: Student will accept losing a game with therapist <br/>
+      <strong>Goal:</strong> Accept losing  <br/>
+      <strong>Status:</strong> In Progress <br/>
+      <strong>Date Opened:</strong> 6/29/2017 <br/>
+      <strong>Baseline:</strong> 50% <br/>
+      <strong>Current Level:</strong> 66% <br/>
+      <strong>Target Date for Mastery:</strong> <br/>
+    <br/><br/>  <img src="${pngSrc}"></div>`;
 
       resolve(pngTag);
 

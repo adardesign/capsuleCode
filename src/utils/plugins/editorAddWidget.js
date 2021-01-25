@@ -10,7 +10,23 @@ tinymce.PluginManager.add("addWidget", function (editor, url) {
       body: {
         type: "tabpanel",
         tabs: [
+         
           {
+            name: "letterhead",
+            title: "📃 letterhead",
+            items: [
+              {
+                type: "listbox", // component type
+                name: "savedText", // identifier
+                label: "letterhead",
+                disabled: false, // disabled state
+                items: [
+                  { text: "default - personal", value: "1" },
+                  { text: "NPS", value: "2" },
+                ],
+              },
+            ],
+          },          {
             name: "saved text",
             title: "✏️ Saved text",
             items: [
@@ -21,7 +37,7 @@ tinymce.PluginManager.add("addWidget", function (editor, url) {
                 disabled: false, // disabled state
                 items: [
                   { text: "Crisis plan", value: "1" },
-                  { text: "therapist, date", value: "2" },
+                  { text: "Hours requesting", value: "2" },
                 ],
               },
             ],
